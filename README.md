@@ -48,6 +48,7 @@ To start the first node in your cluster, simply specify a port and a directory w
 
 ```sh
 $ raftd -p 4001 ~/node.1
+go run main.go -p 4001 ./node1
 ```
 
 To add nodes to the cluster, you'll need to start on a different port and use a different data directory.
@@ -55,6 +56,7 @@ You'll also need to specify the host/port of the leader of the cluster to join:
 
 ```sh
 $ raftd -p 4002 -join localhost:4001 ~/node.2
+go run main.go -p 4002 -join localhost:4001 ./node2
 ```
 
 When you restart the node, it's already been joined to the cluster so you can remove the `-join` argument.
@@ -63,6 +65,8 @@ Finally, you can add one more node:
 
 ```sh
 $ raftd -p 4003 -join localhost:4001 ~/node.3
+or
+go run main.go -p 4003 -join localhost:4001 ./node3
 ```
 
 Now when you set values to the leader:
